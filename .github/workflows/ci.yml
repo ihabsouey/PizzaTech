@@ -46,3 +46,14 @@ jobs:
             cd pizzatech
             git pull
             docker-compose up -d --build
+                  
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
