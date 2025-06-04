@@ -7,7 +7,7 @@ function App() {
   const [pizzas, setPizzas] = useState([]);
 
   const fetchPizzas = async () => {
-    const res = await axios.get('/api/pizzas');
+    const res = axios.get('http://<EC2-IP>:5000/api/pizzas')
     setPizzas(res.data);
   };
 

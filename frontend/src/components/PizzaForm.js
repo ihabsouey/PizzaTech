@@ -11,7 +11,7 @@ function PizzaForm({ refresh }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = { ...form, ingredients: form.ingredients.split(',') };
-    await axios.post('/api/pizzas', payload);
+    await axios.post('http://3.17.6.252:5000/api/pizzas', payload);
     setForm({ name: '', description: '', price: '', ingredients: '', imageUrl: '' });
     refresh();
   };
