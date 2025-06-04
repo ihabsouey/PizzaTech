@@ -10,9 +10,9 @@ function PizzaList({ pizzas, refresh }) {
   return (
     <ul className="space-y-2">
       {pizzas.map((pizza) => (
-        <li key={pizza._id} className="border p-2 flex justify-between">
+        <li key={pizza._id} className="border p-2 flex justify-between items-center bg-white rounded shadow">
           <span>{pizza.name} - ${pizza.price}</span>
-          <button onClick={() => deletePizza(pizza._id)} className="text-red-500">Delete</button>
+          <button onClick={() => deletePizza(pizza._id)} className="text-red-500 hover:underline">Delete</button>
         </li>
       ))}
     </ul>
