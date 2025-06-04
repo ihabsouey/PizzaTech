@@ -16,26 +16,42 @@ jobs:
         with:
           node-version: 18
 
+      # 🔧 Installation des dépendances backend
       - name: Install backend dependencies
         run: |
           cd backend
           npm install
 
+      # ✅ Tests backend
       - name: Run backend tests
         run: |
           cd backend
           npm test
 
-      # ✅ Installer docker-compose manuellement
+      # 🔧 Installation des dépendances frontend
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      # ⚙️ Build frontend (React)
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+      # 🐳 Installer docker-compose
       - name: Install docker-compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
+      # 🐳 Build Docker containers
       - name: Build Docker images
         run: docker-compose build
 
+      # 🚀 Déploiement sur EC2
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -46,14 +62,3 @@ jobs:
             cd pizzatech
             git pull
             docker-compose up -d --build
-                  
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
-
-      - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
-
