@@ -17,13 +17,13 @@ function PizzaForm({ refresh }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4 space-y-2">
-      <input name="name" value={form.name} onChange={handleChange} placeholder="Name" className="border p-1 w-full" />
-      <input name="description" value={form.description} onChange={handleChange} placeholder="Description" className="border p-1 w-full" />
-      <input name="price" type="number" value={form.price} onChange={handleChange} placeholder="Price" className="border p-1 w-full" />
-      <input name="ingredients" value={form.ingredients} onChange={handleChange} placeholder="Ingredients comma separated" className="border p-1 w-full" />
-      <input name="imageUrl" value={form.imageUrl} onChange={handleChange} placeholder="Image URL" className="border p-1 w-full" />
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2">Add Pizza</button>
+    <form onSubmit={handleSubmit} className="mb-4 space-y-2 bg-white p-4 rounded shadow">
+      <input name="name" value={form.name} onChange={handleChange} placeholder="Name" className="border p-2 w-full rounded" />
+      <input name="description" value={form.description} onChange={handleChange} placeholder="Description" className="border p-2 w-full rounded" />
+      <input name="price" type="number" value={form.price} onChange={handleChange} placeholder="Price" className="border p-2 w-full rounded" />
+      <input name="ingredients" value={form.ingredients} onChange={handleChange} placeholder="Ingredients comma separated" className="border p-2 w-full rounded" />
+      <input name="imageUrl" value={form.imageUrl} onChange={handleChange} placeholder="Image URL" className="border p-2 w-full rounded" />
+      <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Add Pizza</button>
     </form>
   );
 }
