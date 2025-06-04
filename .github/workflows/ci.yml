@@ -7,22 +7,35 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
       - name: Install backend dependencies
         run: |
           cd backend
           npm install
+
       - name: Run backend tests
         run: |
           cd backend
           npm test
+
+      # ✅ Installer docker-compose manuellement
+      - name: Install docker-compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
+
       - name: Build Docker images
         run: docker-compose build
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
