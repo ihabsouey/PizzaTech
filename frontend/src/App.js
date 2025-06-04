@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PizzaList from './components/PizzaList';
-import PizzaForm from './components/PizzaForm';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import PizzaList from "./components/PizzaList";
+import PizzaForm from "./components/PizzaForm";
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
 
   const fetchPizzas = async () => {
-    const res = axios.get('http://3.17.6.252:5000/api/pizzas')
+    const res = axios.get("http://3.17.6.252:5000/api/pizzas");
     setPizzas(res.data);
   };
 
-  useEffect(() => { fetchPizzas(); }, []);
+  useEffect(() => {
+    fetchPizzas();
+    console.log("🔍", pizzas);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 container mx-auto p-4">
