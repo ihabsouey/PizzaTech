@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -59,6 +59,34 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
           script: |
+            # Met à jour les paquets
+            sudo yum update -y
+
+            # Installe Docker (si pas déjà installé)
+            if ! command -v docker &> /dev/null
+            then
+              sudo yum install -y docker
+              sudo systemctl start docker
+              sudo systemctl enable docker
+              sudo usermod -aG docker ec2-user
+            fi
+
+            # Installe docker-compose
+            sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+
+            # Installe git (si pas déjà installé)
+            if ! command -v git &> /dev/null
+            then
+              sudo yum install -y git
+            fi
+
+            # Clone le repo si nécessaire
+            if [ ! -d "pizzatech" ]; then
+              git clone https://github.com/ihabsouey/PizzaTech.git pizzatech
+            fi
+
+            # Aller dans le projet, pull et déployer
             cd pizzatech
             git pull
             docker-compose up -d --build
