@@ -24,3 +24,7 @@ A GitHub Actions workflow is provided in `.github/workflows/ci.yml` which instal
 
 ## Docker
 Each app has its own Dockerfile and a `docker-compose.yml` orchestrates them together for local development and production deployment.
+
+## URl
+Front : http://3.17.6.252:3000  
+Backend : http://3.17.6.252:5000/api/pizzas 
