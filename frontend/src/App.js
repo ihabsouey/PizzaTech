@@ -5,15 +5,18 @@ import PizzaForm from "./components/PizzaForm";
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
-
+  
   const fetchPizzas = async () => {
-    const res = axios.get("http://3.17.6.252:5000/api/pizzas");
-    setPizzas(res.data);
+    try {
+      const res = await axios.get("http://3.17.6.252:5000/api/pizzas");
+      setPizzas(res.data);
+    } catch (err) {
+      console.error("❌ Failed to fetch pizzas:", err);
+    }
   };
-
+  
   useEffect(() => {
     fetchPizzas();
-    console.log("🔍", pizzas);
   }, []);
 
   return (
