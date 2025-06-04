@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function PizzaList({ pizzas, refresh }) {
   const deletePizza = async (id) => {
-    await axios.delete(`/api/pizzas/${id}`);
+    await axios.delete(`http://3.17.6.252:5000/api/pizzas/${id}`);
     refresh();
   };
 
